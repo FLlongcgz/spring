@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="src/spring-aop-4.3.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/spring-beans-4.3.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/spring-context-4.3.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/spring-core-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-core-4.3.0.RELEASE.jar" sourcepath="G:/spring/jar/spring-framework-4.3.0.RELEASE/libs/spring-core-4.3.0.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="src/spring-expression-4.3.0.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
