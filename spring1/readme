@@ -1,5 +1,89 @@
 1. spring 项目说明:
   
+  spring 再次学习，虽然以前也学习过spring，但已经隔了好一段时间，加之平时使用地不多。
+  现在也快毕业 了，准备面试，就再次回头学习一遍，加深记忆和巩固。
+  
+  以前学习的时候，有些个疑点没搞清楚的，现在回头再看看，希望可以攻克。
   
   
-  2. 
+2.  ioc 控制反转：反转的是获取对象的方式。
+  
+     以前是通过自己产生对象：
+     
+      User user = new User() ;
+     
+   ioc 是通过容器中获取对象：
+         getBean("")  =========> 等价于   User user = new User() ;
+
+   
+3.  属性注入 ： 将属性值  注入给了属性， 将属性注入给了 bean , 将bean 注入给了 ioc 容器
+
+   
+      i.  以前属性值是通过 set方法设置的
+      
+           User user = new User() ;
+		   user.setName("zs");
+		   user.setGender("男");
+		   user.setAge(11);
+		   
+      ii.  ioc 是 通过配置文件来设置并注入给对象的。
+   
+          <bean id="user" class="com.xiaolou.spring.entity.User">
+   		     <property name="name" value="zs" />
+		     <property name="gender" value="男" />
+		     <property name="age" value="11" />
+	      </bean>
+	  
+	  value的值赋值给 name 属性，多个 property 属性 共同注入给 user 对象
+   
+   
+   
+   4.  DI 依赖注入 的三种方式
+   
+     1. set 方法注入
+     2. 构造器注入
+              实体类必须提供构造方法才可以使用
+     3. P 命名空间注入
+     
+     
+  5. 这两种写法的区别：
+      
+      前者 是value是需要添加 "" 的；而 后者则不需要；
+        前者不能在 <property name="name" value="zs" /> 里使用types 属性
+       ;而后者则可以使用，通过 type 指明属性的类型
+   
+  <bean id="user" class="com.xiaolou.spring.entity.User">
+		<property name="name" value="zs" />
+		<property name="gender" value="男" />
+		<property name="age" value="11" />
+	</bean>
+	
+	<bean id="user" class="com.xiaolou.spring.entity.User">
+		<property name="name" type=""> 
+		   <value></value>
+		</property>
+		...
+	</bean>
+  
+  
+  5. 给属性注入空值
+  
+         给对象类型赋值 null 
+         
+              <property name="name" >
+                  <null/>
+              </property>
+     
+     赋空值 ""   
+              <property name="name">
+                 <value></value>  // 即什么都不写
+              </property>
+              
+      <![CDATA[]]>
+      
+      
+  6. 自动装配
+  
+     byId
+     byName  自动寻找其它bean 的id 值=该类的属性名
+     byType： 其它bean 的类型 是否与该 类的ref属性的类型一致 <只能适用于该bean 满足条件的>

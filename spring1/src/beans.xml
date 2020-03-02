@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
@@ -10,6 +11,95 @@
 		<property name="name" value="zs" />
 		<property name="gender" value="男" />
 		<property name="age" value="11" />
+	</bean>
+
+
+	<!-- ================set方法注入===================== -->
+	<!-- <bean id="teacher" class="com.xiaolou.spring.entity.Teacher"> <property 
+		name="name" value="ls" /> <property name="age" value="22" /> </bean> -->
+
+	<!-- <bean id="course" class="com.xiaolou.spring.entity.Course"> <property 
+		name="cname" value="java" /> <property name="hours" value="66" /> 依赖注入 <property 
+		name="teacher" ref="teacher" /> </bean> -->
+
+	<!-- =============构造器注入====================== -->
+	<!-- 属性的顺序地与构造器的参数顺序一样，不然会报错；如果不一样，可以使用 index 或者 name 属性指定参数的位置；这样就避免了参数的顺序不对的问题 -->
+
+	<bean id="teacher" class="com.xiaolou.spring.entity.Teacher">
+		<constructor-arg value="ww"></constructor-arg>
+		<constructor-arg value="20"></constructor-arg>
+	</bean>
+
+	<bean id="course" class="com.xiaolou.spring.entity.Course">
+		<constructor-arg value="python"></constructor-arg>
+		<constructor-arg value="100"></constructor-arg>
+		<constructor-arg ref="teacher"></constructor-arg>
+	</bean>
+
+
+	<!--================= p命名空间注入=============== -->
+
+	<!-- <bean id="teacher" class="com.xiaolou.spring.entity.Teacher" p:name="zs" 
+		p:age="22"> </bean> <bean id="course" class="com.xiaolou.spring.entity.Course" 
+		p:cname="java" p:hours="100" p:teacher-ref="teacher"> </bean> -->
+
+	<!-- ================集合================ -->
+	<bean id="collections"
+		class="com.xiaolou.spring.entity.AllCollections">
+		<!-- 通过set 方式赋值 -->
+		<property name="list">
+			<list>
+				<value>a</value>
+				<value>b</value>
+				<value>c</value>
+				<value>d</value>
+			</list>
+		</property>
+		
+		<property name="array">
+			<array>
+			   <value>1</value>
+			   <value>2</value>
+			   <value>3</value>
+			</array>
+		</property>
+		<property name="set">
+			<set>
+			   <value>足球</value>
+			   <value>蓝球</value>
+			   <value>羽毛球</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+			   <entry>
+			       <key>
+			          <value>爱好</value>
+			       </key>
+			       <value>足球</value>
+			   </entry>
+			   <entry>
+			      <key>
+			         <value>电影</value>
+			      </key>
+			      <value>速度与激情</value>
+			   </entry>
+			   <entry>
+			      <key>
+			         <value>游戏</value>
+			      </key>
+			      <value>逆战</value>
+			   </entry>
+			</map>
+		</property>
+		
+		<property name="prop">
+             <props>
+                <prop key="Game1">穿越火线</prop>
+                <prop key="Game2">英雄联盟</prop>
+                <prop key="Game3">星际争霸</prop>
+             </props>
+		</property>
 	</bean>
 
 </beans>
